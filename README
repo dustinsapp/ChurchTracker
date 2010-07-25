@@ -1,0 +1,5 @@
+== Welcome to ChurchTracker
+
+A rails app to help small churches track and manage giving and attendance for each 
+service. This will hopefully grow to include kid checkin, communication with the
+church body, volunteer assignment, and more.
