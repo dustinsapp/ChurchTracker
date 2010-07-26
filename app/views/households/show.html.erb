@@ -1,0 +1,67 @@
+<p>
+  <b>Name:</b>
+  <%=h @household.name %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%=h @household.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%=h @household.address2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @household.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @household.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @household.zip %>
+</p>
+
+<p>
+  <b>Phone1:</b>
+  <%=h @household.phone1 %>
+</p>
+
+<p>
+  <b>Phone2:</b>
+  <%=h @household.phone2 %>
+</p>
+
+
+<p><%= link_to 'Edit', edit_household_path(@household) %></p>
+
+<table>
+  <tr>
+    <th>Last Name</th>
+    <th>First Name</th>
+  </tr>
+
+<% for person in @household.people %>
+  <tr>
+    <td><%=h person.last_name %></td>
+    <td><%=h person.first_name %></td>
+    <td><%= link_to 'Show', household_person_path(@household, person) %></td>
+    <td>
+        <%= link_to 'Edit', edit_household_person_path(@household, person) %>
+    </td>
+    <td>
+        <%= link_to 'Destroy', household_person_path(@household, person),
+            :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New person', new_household_person_path(@household) %>
+
+<p><%= link_to 'Back', households_path %></p>
