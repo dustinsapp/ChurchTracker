@@ -7,22 +7,36 @@
 	<title>Tracker (<%= controller.controller_name %>: <%= controller.action_name %>)</title>
 	<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">	
+	<link rel="stylesheet" href="/stylesheets/blueprint/plugins/tabs/screen.css" type="text/css" media="screen, projection">
 	<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-<p style="color: green"><%= notice %></p>
 <div class="container">
-	<div id="user_nav" style="float: right; font-size: 0.9em;">
-		<% if current_user %>
-			<%=h current_user.username %>
-			<%= link_to "Edit profile", edit_user_path(current_user) %>  
-		    <%= link_to "Logout", logout_path %>
-		<% else %>
-			<%= link_to "Register", new_user_path %>
-			<%= link_to "Log in", login_path %>
-		<% end %>
+	<div class="span-24 last">
+		<div id="user_nav" style="float: right; font-size: 0.9em;">
+			<% if current_user %>
+				<%=h current_user.username %>
+				<%= link_to "Edit profile", edit_user_path(current_user) %>  
+		    	<%= link_to "Logout", logout_path %>
+			<% else %>
+				<%= link_to "Register", new_user_path %>
+				<%= link_to "Log in", login_path %>
+			<% end %>
+		</div>
 	</div>
-	<%= yield %>
+	<div class="span-24 last" id="header" style="font-size: 1.2em;">
+		<ul class='tabs'>
+			<li><%= link_to('Dashboard', "/", :class=>("selected" if request.path == "/")) %></li>
+			<li><%= link_to('Households', households_path, :class=>("selected" if request.path =~ /\/households/)) %></li>
+			<li><%= link_to('Users', users_path, :class=>("selected" if request.path =~ /\/users/)) %></li>
+		</ul>
+	</div>
+	<div class="span-24 last" id="notices">
+		<p style="color: green"><%= notice %></p>
+	</div>
+	<div class="span-24 last">
+		<%= yield %>
+	</div>
 </div>
 </body>
 </html>
