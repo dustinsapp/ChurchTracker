@@ -1,0 +1,27 @@
+<% form_for(@collection) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :collected_on %><br />
+    <%= f.date_select :collected_on %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.label :collected_by %><br />
+	<%= f.collection_select :collected_by, User.all, :id, :full_name, {:include_blank => "Select a User"} %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

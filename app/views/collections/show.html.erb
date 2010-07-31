@@ -1,0 +1,28 @@
+<p>
+  <b>Collected on:</b>
+  <%=h @collection.collected_on %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @collection.name %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @collection.notes %>
+</p>
+
+<p>
+  <b>Collected by:</b>
+  <%=h @collection.collector.full_name if @collection.collector %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h number_to_currency @collection.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back', collections_path %>

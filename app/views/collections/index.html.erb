@@ -1,0 +1,28 @@
+<h1>Listing collections</h1>
+
+<table>
+  <tr>
+    <th>Collected on</th>
+    <th>Name</th>
+    <th>Notes</th>
+    <th>Collected by</th>
+    <th>Amount</th>
+  </tr>
+
+<% @collections.each do |collection| %>
+  <tr>
+    <td><%=h collection.collected_on %></td>
+    <td><%=h collection.name %></td>
+    <td><%=h collection.notes %></td>
+    <td><%=h collection.collector.full_name if collection.collector %></td>
+    <td><%=h number_to_currency collection.amount %></td>
+    <td><%= link_to 'Show', collection %></td>
+    <td><%= link_to 'Edit', edit_collection_path(collection) %></td>
+    <td><%= link_to 'Destroy', collection, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New collection', new_collection_path %>

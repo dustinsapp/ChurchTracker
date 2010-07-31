@@ -1,4 +1,6 @@
 class HouseholdsController < ApplicationController
+  before_filter :find_household, :only => [:show, :edit, :update, :destroy]
+  
   # GET /households
   # GET /households.xml
   def index
@@ -13,8 +15,6 @@ class HouseholdsController < ApplicationController
   # GET /households/1
   # GET /households/1.xml
   def show
-    @household = Household.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @household }
@@ -34,7 +34,6 @@ class HouseholdsController < ApplicationController
 
   # GET /households/1/edit
   def edit
-    @household = Household.find(params[:id])
   end
 
   # POST /households
@@ -56,8 +55,6 @@ class HouseholdsController < ApplicationController
   # PUT /households/1
   # PUT /households/1.xml
   def update
-    @household = Household.find(params[:id])
-
     respond_to do |format|
       if @household.update_attributes(params[:household])
         format.html { redirect_to(@household, :notice => 'Household was successfully updated.') }
@@ -72,7 +69,6 @@ class HouseholdsController < ApplicationController
   # DELETE /households/1
   # DELETE /households/1.xml
   def destroy
-    @household = Household.find(params[:id])
     @household.destroy
 
     respond_to do |format|
@@ -80,4 +76,9 @@ class HouseholdsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def find_household
+      @household = Household.find(params[:id])
+    end
 end
