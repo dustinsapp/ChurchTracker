@@ -19,18 +19,19 @@
 				<%= link_to "Edit profile", edit_user_path(current_user) %>  
 		    	<%= link_to "Logout", logout_path %>
 			<% else %>
-				<%= link_to "Register", new_user_path %>
 				<%= link_to "Log in", login_path %>
 			<% end %>
 		</div>
 	</div>
 	<div class="span-24 last" id="header" style="font-size: 1.2em;">
+		<% if current_user %>
 		<ul class='tabs'>
 			<li><%= link_to('Dashboard', "/", :class=>("selected" if request.path == "/")) %></li>
 			<li><%= link_to('Households', households_path, :class=>("selected" if request.path =~ /\/households/)) %></li>
 			<li><%= link_to('Giving', collections_path, :class=>("selected" if request.path =~ /\/collections/)) %></li>
 			<li><%= link_to('Users', users_path, :class=>("selected" if request.path =~ /\/users/)) %></li>
 		</ul>
+		<% end %>
 	</div>
 	<div class="span-24 last" id="notices">
 		<p style="color: green"><%= notice %></p>
