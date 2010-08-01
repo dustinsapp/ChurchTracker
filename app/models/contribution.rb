@@ -12,6 +12,10 @@ class Contribution < ActiveRecord::Base
   
   TYPE_TEXTS = {CHECK => 'Check', CASH => 'Cash', CC => 'Credit Card', ACH => 'ACH', NONCASH => 'Non-cash'}
   
+  validates_presence_of :amount, :received_on, :contribution_type, :fund_id
+  validates_presence_of :reference, :if => "contribution_type == Contribution::CHECK"
+  validates_presence_of :memo, :if => "contribution_type == Contribution::NONCASH"
+
   def type_text()
     TYPE_TEXTS[contribution_type]
   end

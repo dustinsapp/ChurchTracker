@@ -1,39 +1,50 @@
 <% form_for([@collection, @contribution]) do |f| %>
-  <%= f.error_messages %>
+	<div class="span-24 last">
+		<%= f.error_messages %>
+	</div>
 
-	<p>
-		Household<br />
-		<%= f.collection_select :household_id, Household.all, :id, :name, {:include_blank => "Select a Household"} %>
-	</p>
-	<p>
-		Person<br />
-		<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
-	</p>
-	<p>
-	    <%= f.label :contribution_type %><br />
-		<%= f.select :contribution_type, Contribution::TYPE_TEXTS.collect {|type| [ type[1], type[0] ] }, :selected => :contribution_type %>
-	</p>
-	<p>
-		<%= f.label :received_on %><br />
-		<%= f.date_select :received_on %>
-	</p>
-	<p>
-		Fund<br />
-		<%= f.collection_select :fund_id, Fund.all, :id, :name, {:include_blank => "Select a Fund"} %>
-	</p>
-	<p>
-		<%= f.label :amount %><br />
-		<%= f.text_field :amount %>
-	</p>
-	<p>
-		<%= f.label :reference %><br />
-		<%= f.text_field :reference %>
-	</p>
-	<p>
-		<%= f.label :memo %><br />
-		<%= f.text_area :memo %>
-	</p>
-	<p>
-		<%= f.submit "Submit" %>
-	</p>
+	<div class="span-24 last">
+		<div class="span-8">
+			<b>Household</b><br />
+			<%= f.collection_select :household_id, Household.all, :id, :name, {:include_blank => "Select a Household"} %>
+		</div>
+		<div class="span-8">
+			<b>Person</b><br />
+			<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
+		</div>
+		<div class="span-8 last">
+			<b>Received On</b><br />
+			<%= f.date_select :received_on %>
+		</div>
+		<div class="span-24 last">&nbsp;</div>
+		<div class="span-16">
+			<div class="span-8">
+			    <b>Contribution Type<br />
+				<%= f.select :contribution_type, Contribution::TYPE_TEXTS.collect {|type| [ type[1], type[0] ] }, :selected => @contribution.contribution_type %>
+			</div>
+			<div class="span-8 last">
+				<b>Amount</b><br />
+				<%= f.text_field :amount %>
+			</div>
+			<div class="span-16 last">&nbsp;</div>
+			<div class="span-8">
+				<b>Reference</b><br />
+				<%= f.text_field :reference %>
+			</div>
+			<div class="span-8 last">
+				<b>Fund</b><br />
+				<%= f.collection_select :fund_id, Fund.all, :id, :name %>
+			</div>
+		</div>
+		<div class="span-8 last">
+			<b>Memo</b><br />
+			<%= f.text_area :memo, :style => "height:60px;" %>
+		</div>
+		<div class="span-24 last">&nbsp;</div>
+	</div>
+	<div class="span-24 last">
+		<p>
+			<%= f.submit "Submit" %>
+		</p>
+	</div>
 <% end %>
