@@ -1,0 +1,36 @@
+<h1>Contribution</h1>
+<p>
+	<b>Household:</b>
+	<%= @contribution.household.name if @contribution.household %>
+</p>
+<p>
+	<b>Person:</b>
+	<%= @contribution.person.full_name if @contribution.person %>
+</p>
+<p>
+    <b>Type:</b>
+	<%= @contribution.type_text %>
+</p>
+<p>
+	<b>Received On:</b>
+	<%= @contribution.received_on %>
+</p>
+<p>
+	<b>Fund:</b>
+	<%= @contribution.fund.name if @contribution.fund %>
+</p>
+<p>
+	<b>Amount:</b>
+	<%= number_to_currency @contribution.amount %>
+</p>
+<p>
+	<b>Reference:</b>
+	<%= @contribution.reference %>
+</p>
+<p>
+	<b>Memo:</b>
+	<%= @contribution.memo %>
+</p>
+
+<%= link_to 'Edit', edit_collection_contribution_path(@collection, @contribution) %> |
+<%= link_to 'Back', collection_contributions_path(@collection) %>

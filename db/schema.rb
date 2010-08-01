@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100731211557) do
+ActiveRecord::Schema.define(:version => 20100731230914) do
 
   create_table "collections", :force => true do |t|
     t.date     "collected_on"
@@ -17,6 +17,20 @@ ActiveRecord::Schema.define(:version => 20100731211557) do
     t.text     "notes"
     t.integer  "collected_by"
     t.decimal  "amount",       :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "household_id"
+    t.integer  "collection_id"
+    t.integer  "contribution_type"
+    t.date     "received_on"
+    t.integer  "fund_id"
+    t.decimal  "amount",            :precision => 10, :scale => 2
+    t.string   "reference"
+    t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

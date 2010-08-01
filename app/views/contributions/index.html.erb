@@ -1,0 +1,32 @@
+<h1>Contributions for <%= @collection.name %></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Received</th>
+    <th>Reference</th>
+    <th>Amount</th>
+  </tr>
+
+<% for contribution in @contributions %>
+  <tr>
+    <td><%=h contribution.household ? contribution.household.name : (contribution.person.full_name if contribution.person) %></td>
+    <td><%=h contribution.received_on %></td>
+    <td><%=h contribution.reference %></td>
+    <td><%=h number_to_currency contribution.amount %></td>
+    <td><%= link_to 'Show', collection_contribution_path(@collection, contribution) %></td>
+    <td>
+        <%= link_to 'Edit', edit_collection_contribution_path(@collection, contribution) %>
+    </td>
+    <td>
+        <%= link_to 'Destroy', collection_contribution_path(@collection, contribution),
+            :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contribution', new_collection_contribution_path(@collection) %>
+<%= link_to 'Back to Collection', @collection %>

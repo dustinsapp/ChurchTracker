@@ -23,6 +23,14 @@
   <%=h number_to_currency @collection.amount %>
 </p>
 
+<h2>Contributions</h2>
+<table>
+<% @collection.contributions.each do |c| %>
+<tr><td><%= c.received_on %></td><td><%=h c.household ? c.household.name : (c.person.full_name if c.person) %></td>
+	<td><%= c.reference %></td><td><%=h number_to_currency c.amount %><td></tr>
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
+<%= link_to 'Back', collections_path %> |
+<%= link_to 'Manage Contributions', collection_contributions_path(@collection) %>

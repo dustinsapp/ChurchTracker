@@ -1,0 +1,39 @@
+<% form_for([@collection, @contribution]) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+		Household<br />
+		<%= f.collection_select :household_id, Household.all, :id, :name, {:include_blank => "Select a Household"} %>
+	</p>
+	<p>
+		Person<br />
+		<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
+	</p>
+	<p>
+	    <%= f.label :contribution_type %><br />
+		<%= f.select :contribution_type, Contribution::TYPE_TEXTS.collect {|type| [ type[1], type[0] ] }, :selected => :contribution_type %>
+	</p>
+	<p>
+		<%= f.label :received_on %><br />
+		<%= f.date_select :received_on %>
+	</p>
+	<p>
+		Fund<br />
+		<%= f.collection_select :fund_id, Fund.all, :id, :name, {:include_blank => "Select a Fund"} %>
+	</p>
+	<p>
+		<%= f.label :amount %><br />
+		<%= f.text_field :amount %>
+	</p>
+	<p>
+		<%= f.label :reference %><br />
+		<%= f.text_field :reference %>
+	</p>
+	<p>
+		<%= f.label :memo %><br />
+		<%= f.text_area :memo %>
+	</p>
+	<p>
+		<%= f.submit "Submit" %>
+	</p>
+<% end %>
