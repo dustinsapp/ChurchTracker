@@ -1,2 +1,15 @@
 <h1>Dashboard</h1>
 <p>This page will have latest stats and charts.</p>
+<div id="chartdiv" class="plot" style="height:300px;width:500px; "></div>
+<script type="text/javascript">
+	var collections=new Array();
+	var xticks=new Array();
+
+	<% @collections.each_with_index do |collection, i| %>
+		xticks.push([<%= i %>,"<%=h collection.collected_on %>"]);
+		collections.push([<%=h i %>,<%=h collection.amount %>]);
+	<% end %>
+
+	$j.jqplot('chartdiv',  [collections], {axes:{xaxis:{ticks:xticks},yaxis:{ticks:[[0," "],[500,"$500"],[1000,"$1000"],[1500,"$1500"]]}}});
+</script>
+

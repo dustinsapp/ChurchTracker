@@ -17,6 +17,10 @@
 	  // e.g. $j('#div_id').stuff instead of $('#div_id').stuff
 	  var $j = jQuery.noConflict();
 	</script>
+	<%= javascript_include_tag 'jqplot/jquery.jqplot.min' %>
+	<%= javascript_include_tag 'jqplot/plugins/jqplot.canvasTextRenderer.min.js' %>
+	<%= javascript_include_tag 'jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js' %>
+	<%= javascript_include_tag 'jqplot/plugins/jqplot.canvasAxisTickRenderer.js' %>
 </head>
 <body>
 <div class="container">
