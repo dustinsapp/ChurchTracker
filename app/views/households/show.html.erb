@@ -1,67 +1,63 @@
-<p>
-  <b>Name:</b>
-  <%=h @household.name %>
-</p>
+<h2>Household Details</h2>
+<div class="span-8">
+	<div class="span-8 last">
+		<b>Name:</b><br/>
+		<%=h @household.name %>
+	</div>
+	<div class="span-8 last">&nbsp;</div>
+	<div class="span-8 last">
+		<b>Phone1:</b><br/>
+		<%=h @household.phone1 %>
+	</div>
+	<div class="span-8 last">&nbsp;</div>
+	<div class="span-8 last">
+		<b>Phone2:</b><br/>
+		<%=h @household.phone2 %>
+	</div>
+</div>
+<div class="span-16 last">
+	<div class="span-16 last">
+		<b>Address</b><br />
+		<%=h @household.address1 %><br/>
+		<%=h @household.address2 %>
+	</div>
+	<div class="span-16 last">
+		<%=h @household.city %>, <%=h @household.state %> <%=h @household.zip %>
+	</div>
+</div>
+<div class="span-24 last">&nbsp;</div>
 
-<p>
-  <b>Address1:</b>
-  <%=h @household.address1 %>
-</p>
+<div class="span-24 last"><%= link_to 'Edit Household Details', edit_household_path(@household) %></div>
 
-<p>
-  <b>Address2:</b>
-  <%=h @household.address2 %>
-</p>
+<div class="span-24 last">&nbsp;</div>
 
-<p>
-  <b>City:</b>
-  <%=h @household.city %>
-</p>
+<div class="span-24 last">
+	<h2>Household Members</h2>
+	<table>
+	  <tr>
+	    <th>Last Name</th>
+	    <th>First Name</th>
+	    <th>Email</th>
+	    <th>Phone</th>
+	  </tr>
 
-<p>
-  <b>State:</b>
-  <%=h @household.state %>
-</p>
-
-<p>
-  <b>Zip:</b>
-  <%=h @household.zip %>
-</p>
-
-<p>
-  <b>Phone1:</b>
-  <%=h @household.phone1 %>
-</p>
-
-<p>
-  <b>Phone2:</b>
-  <%=h @household.phone2 %>
-</p>
-
-
-<p><%= link_to 'Edit', edit_household_path(@household) %></p>
-
-<table>
-  <tr>
-    <th>Last Name</th>
-    <th>First Name</th>
-  </tr>
-
-<% for person in @household.people %>
-  <tr>
-    <td><%=h person.last_name %></td>
-    <td><%=h person.first_name %></td>
-    <td><%= link_to 'Show', household_person_path(@household, person) %></td>
-    <td>
-        <%= link_to 'Edit', edit_household_person_path(@household, person) %>
-    </td>
-    <td>
-        <%= link_to 'Destroy', household_person_path(@household, person),
-            :confirm => 'Are you sure?', :method => :delete %>
-    </td>
-  </tr>
-<% end %>
-</table>
-<%= link_to 'New person', new_household_person_path(@household) %>
+	<% for person in @household.people %>
+	  <tr>
+	    <td><%= link_to person.last_name, edit_household_person_path(@household, person) %></td>
+	    <td><%= link_to person.first_name, edit_household_person_path(@household, person) %></td>
+	    <td><%=h person.email %></td>
+	    <td><%=h person.phone %></td>
+	    <td>
+	        <%= link_to 'Delete', household_person_path(@household, person),
+	            :confirm => 'Are you sure?', :method => :delete %>
+	    </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+<div class="span-24 last">&nbsp;</div>
+<div class="span-24 last">
+<p><%= link_to 'New person', new_household_person_path(@household) %></p>
 
 <p><%= link_to 'Back', households_path %></p>
+</div>

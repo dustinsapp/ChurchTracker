@@ -1,23 +1,29 @@
 <% form_for([@household, @person]) do |f| %>
-  <%= f.error_messages %>
+	<div class="span-24 last">
+		<%= f.error_messages %>
+	</div>
 
-  <p>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </p>
-  <p>
-    <%= f.submit 'Submit' %>
-  </p>
+	<div class="span-24 last">
+		<div class="span-8">
+		    <b>First Name</b><br />
+		    <%= f.text_field :first_name %>
+		</div>
+		<div class="span-8 last">
+		    <b>Last Name</b><br />
+			<%= f.text_field :last_name %>
+		</div>
+		<div class="span-24 last">&nbsp;</div>
+		<div class="span-8">
+		    <b>Email</b><br />
+		    <%= f.text_field :email %>
+		</div>
+		<div class="span-8 last">
+		    <b>Phone</b><br />
+		    <%= f.text_field :phone %>
+		</div>
+		<div class="span-24 last">&nbsp;</div>
+	</div>
+	<div class="span-24 last">
+    	<p><%= f.submit 'Submit' %></p>
+	</div>
 <% end %>

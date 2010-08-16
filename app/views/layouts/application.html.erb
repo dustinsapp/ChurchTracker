@@ -39,7 +39,7 @@
 		<% if current_user %>
 		<ul class='tabs'>
 			<li><%= link_to('Dashboard', "/", :class=>("selected" if request.path == "/")) %></li>
-			<li><%= link_to('Households', households_path, :class=>("selected" if request.path =~ /\/households/)) %></li>
+			<li><%= link_to('People', households_path, :class=>("selected" if request.path =~ /\/households/)) %></li>
 			<li><%= link_to('Giving', collections_path, :class=>("selected" if request.path =~ /\/collections/)) %></li>
 			<li><%= link_to('Users', users_path, :class=>("selected" if request.path =~ /\/users/)) %></li>
 		</ul>

@@ -1,39 +1,83 @@
 <% form_for(@household) do |f| %>
-  <%= f.error_messages %>
+	<div class="span-24 last">
+		<%= f.error_messages %>
+	</div>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :address1 %><br />
-    <%= f.text_field :address1 %>
-  </p>
-  <p>
-    <%= f.label :address2 %><br />
-    <%= f.text_field :address2 %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :state %><br />
-    <%= f.text_field :state %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  <p>
-    <%= f.label :phone1 %><br />
-    <%= f.text_field :phone1 %>
-  </p>
-  <p>
-    <%= f.label :phone2 %><br />
-    <%= f.text_field :phone2 %>
-  </p>
-  <p>
-    <%= f.submit 'Submit' %>
-  </p>
+	<% if @household.new_record? %>
+		<script type="text/javascript">
+			$j(function() {
+				$j(document).ready(function () {
+					$j("#head_last_name").change( function() {
+						if ($j("#household_name").val().length <= 0) {
+							$j("#household_name").val($j("#head_last_name").val() + " family");
+						}
+					  // check input ($(this).val()) for validity here
+					});
+				});
+			});
+		</script>
+
+		<h2>Head of household</h2>
+		<div class="span-24 last">
+			<div class="span-8">
+			    <b>First Name</b><br />
+			    <%= text_field_tag 'head[first_name]', nil, {:size=>30} %>
+			</div>
+			<div class="span-8 last">
+			    <b>Last Name</b><br />
+				<%= text_field_tag 'head[last_name]', nil, {:size=>30} %>
+			</div>
+		</div>
+		<div class="span-24 last">
+			<div class="span-8">
+			    <b>Email</b><br />
+			    <%= text_field_tag 'head[email]', nil, {:size=>30} %>
+			</div>
+			<div class="span-8 last">
+			    <b>Phone</b><br />
+			    <%= text_field_tag 'head[phone]', nil, {:size=>30} %>
+			</div>
+			<div class="span-24 last">&nbsp;</div>
+		</div>
+
+		<h2>Household Details</h2>
+	<% end%>
+	<div class="span-8">
+		<div class="span-8 last">
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		</div>
+		<div class="span-8 last">
+		    <%= f.label :phone1 %><br />
+		    <%= f.text_field :phone1 %>
+		</div>
+		<div class="span-8 last">
+		    <%= f.label :phone2 %><br />
+		    <%= f.text_field :phone2 %>
+		</div>
+	</div>
+	<div class="span-16 last">
+		<div class="span-16 last">
+			<b>Address</b><br />
+			<%= f.text_field :address1, :size=>60 %><br/>
+		    <%= f.text_field :address2, :size=>60 %>
+		</div>
+		<div class="span-4">
+		    <%= f.text_field :city, :size=>23 %>
+			<p>City</p>
+		</div>
+		<div class="span-2">
+			<%= f.collection_select :state, State.all, :abbreviation, :abbreviation, {:include_blank => "State"} %>
+		</div>
+		<div class="span-4 last">
+		    <%= f.text_field :zip, :size=>10 %><br/>
+			Zip
+		</div>
+	</div>
+	<div class="span-24 last">&nbsp;</div>
+	<div class="span-24 last">
+		<p>
+		    <%= f.submit 'Submit' %>
+		</p>
+	</div>
 <% end %>

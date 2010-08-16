@@ -43,6 +43,9 @@ class HouseholdsController < ApplicationController
 
     respond_to do |format|
       if @household.save
+        head_of_household = @household.people.build(params[:head])
+        head_of_household.save
+        
         format.html { redirect_to(@household, :notice => 'Household was successfully created.') }
         format.xml  { render :xml => @household, :status => :created, :location => @household }
       else
