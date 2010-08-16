@@ -22,7 +22,7 @@ class ContributionsController < ApplicationController
     end
     
     if @contribution.save
-      redirect_to collection_contribution_url(@collection, @contribution)
+      redirect_to @collection
     else
       render :action => "new"
     end
@@ -42,7 +42,7 @@ class ContributionsController < ApplicationController
     end
 
     if @contribution.update_attributes(params[:contribution])
-      redirect_to collection_contribution_url(@collection, @contribution)
+      redirect_to @collection
     else
       render :action => "edit"
     end

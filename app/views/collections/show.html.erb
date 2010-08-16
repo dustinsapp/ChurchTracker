@@ -3,26 +3,34 @@
 		<b>Name:</b><br/>
 		<%=h @collection.name %>
 	</div>
-	<div class="span-16 last">
-		<b>Amount:</b><br/>
-		<%=h number_to_currency @collection.amount %>
-	</div>
-	<div class="span-24 last">&nbsp;</div>
 	<div class="span-8">
 		<b>Collected on:</b><br/>
 		<%=h @collection.collected_on %>
 	</div>
-	<div class="span-16 last">
+	<div class="span-8 last">
 		<b>Collected by:</b><br/>
 		<%=h @collection.collector.full_name if @collection.collector %>
+	</div>
+	<div class="span-24 last">&nbsp;</div>
+	<div class="span-8">
+		<b>Amount:</b><br/>
+		<%=h number_to_currency @collection.amount %>
+	</div>
+	<div class="span-8">
+		<b>Sum of contributions:</b><br/>
+		<%=h number_to_currency @collection.contribution_total %>
+	</div>
+	<div class="span-8 last">
+		<b>Variance:</b><br/>
+		<%=h content_tag(:span, number_to_currency(@collection.contribution_variance), :style => ("color : red;" if @collection.contribution_variance > 0)) %>
 	</div>
 	<div class="span-24 last">&nbsp;</div>
 	<div class="span-8 last">
 		<b>Notes:</b><br/>
 		<%=h @collection.notes %>
 		</div>
-		<div class="span-24 last">&nbsp;</div>
 	</div>
+	<div class="span-24 last">&nbsp;</div>
 </div>
 
 <div class="span-24 last">

@@ -3,4 +3,12 @@ class Collection < ActiveRecord::Base
   has_many :contributions
   
   validates_presence_of :amount, :collected_by, :name
+  
+  def contribution_total
+    contributions.sum(:amount)
+  end
+
+  def contribution_variance
+    amount - contributions.sum(:amount)
+  end
 end
