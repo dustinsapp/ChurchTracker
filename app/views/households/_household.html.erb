@@ -5,14 +5,12 @@
 
 	<% if @household.new_record? %>
 		<script type="text/javascript">
-			$j(function() {
-				$j(document).ready(function () {
-					$j("#head_last_name").change( function() {
-						if ($j("#household_name").val().length <= 0) {
-							$j("#household_name").val($j("#head_last_name").val() + " family");
-						}
-					  // check input ($(this).val()) for validity here
-					});
+			$j(document).ready(function () {
+				$j("#head_last_name").change( function() {
+					if ($j("#household_name").val().length <= 0) {
+						$j("#household_name").val($j("#head_last_name").val() + " family");
+					}
+				  // check input ($(this).val()) for validity here
 				});
 			});
 		</script>

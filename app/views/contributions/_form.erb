@@ -1,3 +1,17 @@
+<script type="text/javascript">
+$j(document).ready(function () {
+	if ($j("#contribution_person_id").val().length > 0) {$j("#attribute_to_household").removeAttr('disabled');}
+	
+	$j("#contribution_person_id").change( function() {
+		if ($j("#contribution_person_id").val().length <= 0) {$j("#attribute_to_household").attr('disabled', 'disabled');}
+		else {
+			$j("#attribute_to_household").removeAttr('disabled');
+			$j("#attribute_to_household").val('true');
+		}
+	});
+});
+</script>
+
 <% form_for([@collection, @contribution]) do |f| %>
 	<div class="span-24 last">
 		<%= f.error_messages %>
@@ -5,12 +19,12 @@
 
 	<div class="span-24 last">
 		<div class="span-8">
-			<b>Household</b><br />
-			<%= f.collection_select :household_id, Household.all, :id, :name, {:include_blank => "Select a Household"} %>
+			<b>Contributor</b><br />
+			<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
 		</div>
 		<div class="span-8">
-			<b>Person</b><br />
-			<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
+			<b>Attribute To</b><br />
+			<%= select_tag :attribute_to_household, "<option value=true #{'selected=selected' if @contribution.household}>Household</option><option value=false #{'selected=selected' if !@contribution.household}>Individual</option>", :disabled => true %>
 		</div>
 		<div class="span-8 last">
 			<b>Received On</b><br />

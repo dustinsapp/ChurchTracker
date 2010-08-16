@@ -15,6 +15,12 @@ class ContributionsController < ApplicationController
   
   def create
     @contribution = @collection.contributions.new(params[:contribution])
+    if @contribution.person && params[:attribute_to_household] == 'true'
+      @contribution.household = @contribution.person.household 
+    else
+      @contribution.household = nil
+    end
+    
     if @contribution.save
       redirect_to collection_contribution_url(@collection, @contribution)
     else
@@ -28,6 +34,13 @@ class ContributionsController < ApplicationController
   
   def update
     @contribution = Contribution.find(params[:id])
+
+    if params[:contribution][:person_id] && params[:attribute_to_household] == 'true'
+      @contribution.household = Person.find(params[:contribution][:person_id]).household 
+    else
+      @contribution.household = nil
+    end
+
     if @contribution.update_attributes(params[:contribution])
       redirect_to collection_contribution_url(@collection, @contribution)
     else
