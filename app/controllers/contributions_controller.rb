@@ -22,7 +22,7 @@ class ContributionsController < ApplicationController
     end
     
     if @contribution.save
-      redirect_to @collection
+      redirect_to @collection, :notice => 'Contribution was successfully added.'
     else
       render :action => "new"
     end
@@ -42,7 +42,7 @@ class ContributionsController < ApplicationController
     end
 
     if @contribution.update_attributes(params[:contribution])
-      redirect_to @collection
+      redirect_to @collection, :notice => 'Contribution was successfully updated.'
     else
       render :action => "edit"
     end
