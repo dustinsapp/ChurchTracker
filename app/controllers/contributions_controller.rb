@@ -11,6 +11,7 @@ class ContributionsController < ApplicationController
 
   def new
     @contribution = @collection.contributions.build
+    @contribution.received_on = @collection.collected_on
   end
   
   def create
