@@ -8,7 +8,11 @@
 			$j(document).ready(function () {
 				$j("#head_last_name").change( function() {
 					if ($j("#household_name").val().length <= 0) {
-						$j("#household_name").val($j("#head_last_name").val() + " family");
+						household_name = $j("#head_last_name").val();
+						if ($j("#head_first_name").val().length >= 0) {
+							household_name += ", " + $j("#head_first_name").val();
+						}
+						$j("#household_name").val(household_name);
 					}
 				  // check input ($(this).val()) for validity here
 				});
