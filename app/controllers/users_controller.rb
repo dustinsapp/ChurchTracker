@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.all
+    @users = User.ascend_by_last_name
 
     respond_to do |format|
       format.html # index.html.erb

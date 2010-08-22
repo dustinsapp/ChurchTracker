@@ -4,7 +4,7 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.xml
   def index
-    @households = Household.all
+    @households = Household.ascend_by_name
 
     respond_to do |format|
       format.html # index.html.erb

@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.find(:all,:conditions=>['first_name like ? or last_name like ?', "%#{params[:search]}%", "%#{params[:search]}%"])
+    @people = Person.first_name_or_last_name_like(params[:search]).ascend_by_last_name
 
     respond_to do |format|
       format.html # index.html.erb

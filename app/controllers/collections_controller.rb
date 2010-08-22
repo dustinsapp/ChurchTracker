@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.xml
   def index
-    @collections = Collection.all
+    @collections = Collection.descend_by_collected_on
 
     respond_to do |format|
       format.html # index.html.erb
