@@ -4,11 +4,12 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.all
+    @people = Person.find(:all,:conditions=>['first_name like ? or last_name like ?', "%#{params[:search]}%", "%#{params[:search]}%"])
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @people }
+      format.js #index.js.erb
     end
   end
 

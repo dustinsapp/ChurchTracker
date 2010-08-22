@@ -19,4 +19,8 @@ class Contribution < ActiveRecord::Base
   def type_text()
     TYPE_TEXTS[contribution_type]
   end
+  
+  def person_name
+    person.full_name if person
+  end
 end

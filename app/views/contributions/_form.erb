@@ -2,15 +2,27 @@
 $j(document).ready(function () {
 	if ($j("#contribution_person_id").val().length > 0) {$j("#attribute_to_household").removeAttr('disabled');}
 	
-	$j("#contribution_person_id").change( function() {
-		if ($j("#contribution_person_id").val().length <= 0) {$j("#attribute_to_household").attr('disabled', 'disabled');}
-		else {
-			$j("#attribute_to_household").removeAttr('disabled');
-			$j("#attribute_to_household").val('true');
-		}
+	$j("#clear_person").click( function() {
+		$j("#attribute_to_household").attr('disabled', 'disabled');
+	    $j("#contribution_person_id").val('');
+		$j("#contributor_name").val('');
+		$j("#contribution_person_name").val('');
 	});
 });
+function setPersonId(text, li) {
+    $j("#contribution_person_id").val(li.id);
+	$j("#attribute_to_household").removeAttr('disabled');
+	$j("#attribute_to_household").val('true');
+	$j("#contributor_name").val(text.value);
+}
 </script>
+
+<div class="span-24 last">
+	<b>Search for contributors</b>: 
+	<%= text_field_with_auto_complete :contribution, :person_name, {}, {:url=>formatted_people_path(:js), :method=>:get, :with=>"'search='+element.value", :after_update_element => "setPersonId"} %> 
+	<a id="clear_person" href="javascript:void(0)">Clear Person</a>
+</div>
+<div class="span-24 last">&nbsp;</div>
 
 <% form_for([@collection, @contribution]) do |f| %>
 	<div class="span-24 last">
@@ -19,8 +31,9 @@ $j(document).ready(function () {
 
 	<div class="span-24 last">
 		<div class="span-8">
+			<%= f.hidden_field :person_id %>
 			<b>Contributor</b><br />
-			<%= f.collection_select :person_id, Person.all, :id, :full_name, {:include_blank => "Select a Person"} %>
+			<%= text_field_tag 'contributor_name', (@contribution.person.full_name if @contribution.person), {:size => 30, :disabled=>true} %>
 		</div>
 		<div class="span-8">
 			<b>Attribute To</b><br />

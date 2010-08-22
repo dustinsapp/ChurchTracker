@@ -54,7 +54,7 @@ class ContributionsController < ApplicationController
     @contribution.destroy
 
     respond_to do |format|
-      format.html { redirect_to collection_contributions_path(@collection) }
+      format.html { redirect_to @collection, :notice => 'Contribution was successfully deleted.' }
       format.xml  { head :ok }
     end
   end
