@@ -4,7 +4,9 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.xml
   def index
-    @households = Household.ascend_by_name
+    @search = Household.search(params[:search])
+    @search.order ||= :ascend_by_name
+    @households = @search.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
       format.html # index.html.erb

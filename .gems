@@ -1,3 +1,4 @@
 rails -v 2.3.8
 authlogic -v 2.1.5
 searchlogic -v 2.4.23
+will_paginate -v 2.3.14

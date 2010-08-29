@@ -1,22 +1,30 @@
 <h1>Listing households</h1>
+<div class="span-16">
+<% form_for @search do |f| %>
+  <p>
+    <%= f.text_field :name_like %>
+    <%= f.submit "Search" %>
+  </p>
+  <p>
+  </p>
+<% end %>
+</div>
+<div class="span-8 last"><div style="float:right;"><%= link_to 'New household', new_household_path %></div></div>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Address1</th>
-    <th>Address2</th>
+    <th><%= order @search, :by => :name %></th>
+    <th>Address</th>
     <th>City</th>
     <th>State</th>
     <th>Zip</th>
-    <th>Phone1</th>
-    <th>Phone2</th>
+    <th>Phone</th>
   </tr>
 
 <% @households.each do |household| %>
   <tr>
     <td><%=h household.name %></td>
     <td><%=h household.address1 %></td>
-    <td><%=h household.address2 %></td>
     <td><%=h household.city %></td>
     <td><%=h household.state %></td>
     <td><%=h household.zip %></td>
@@ -28,7 +36,4 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New household', new_household_path %>
+<%= will_paginate @people %>
