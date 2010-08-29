@@ -47,7 +47,7 @@ function setPersonId(text, li) {
 		<div class="span-16">
 			<div class="span-8">
 			    <b>Contribution Type<br />
-				<%= f.select :contribution_type, Contribution::TYPE_TEXTS.collect {|type| [ type[1], type[0] ] }, :selected => @contribution.contribution_type %>
+				<%= f.select :contribution_type, Contribution::TYPE_TEXTS.sort.collect {|type| [ type[1], type[0] ] }, :selected => @contribution.contribution_type %>
 			</div>
 			<div class="span-8 last">
 				<b>Amount</b><br />

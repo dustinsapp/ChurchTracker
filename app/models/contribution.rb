@@ -9,8 +9,9 @@ class Contribution < ActiveRecord::Base
   CC = 2
   ACH = 3
   NONCASH = 4
+  PAYPAL = 5
   
-  TYPE_TEXTS = {CHECK => 'Check', CASH => 'Cash', CC => 'Credit Card', ACH => 'ACH', NONCASH => 'Non-cash'}
+  TYPE_TEXTS = {CHECK => 'Check', CASH => 'Cash', CC => 'Credit Card', ACH => 'ACH', PAYPAL => 'PayPal', NONCASH => 'Non-cash'}
   
   validates_presence_of :amount, :received_on, :contribution_type, :fund_id
   validates_presence_of :reference, :if => "contribution_type == Contribution::CHECK"
