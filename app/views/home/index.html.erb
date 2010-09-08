@@ -1,12 +1,14 @@
 <h1>Dashboard</h1>
-<p>This page will have latest stats and charts.</p>
+<h2>Giving Stats</h2>
+<p>Month to date: <%= number_to_currency @mtd_giving %></p>
+<p>Last Month: <%= number_to_currency @last_month_giving %></p>
  
 <div id="placeholder" style="width:600px;height:300px"></div>
 <script id="source" language="javascript" type="text/javascript"> 
 $j(function () {
     var contribs = [];
 	<% @collections.each_with_index do |collection, i| %>
-		contribs.push([<%=h collection.collected_on.to_time.to_i*1000 %>,<%=h collection.amount %>]);
+		contribs.push([new Date(<%=h collection.giving_year %>, <%=h collection.giving_month %>),<%=h collection.monthly_sum %>]);
 	<% end %>
  
     var plot = $j.plot($j("#placeholder"),[{data:contribs,color:"rgb(77,156,192)"}], {
@@ -37,8 +39,8 @@ $j(function () {
             if (previousPoint != item.datapoint) {
                 previousPoint = item.datapoint;
                 $j("#tooltip").remove();
-                var x = item.datapoint[0].toFixed(2),y = item.datapoint[1].toFixed(2);
-                showTooltip(item.pageX, item.pageY,"$"+y);
+                var x = new Date(item.datapoint[0]),y = item.datapoint[1].toFixed(2);
+                showTooltip(item.pageX, item.pageY,"Giving For "+x.getMonth()+"/"+x.getFullYear()+": $"+y);
             }
         }
         else {
