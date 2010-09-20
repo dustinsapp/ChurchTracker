@@ -8,7 +8,8 @@
 $j(function () {
     var contribs = [];
 	<% @collections.each_with_index do |collection, i| %>
-		contribs.push([new Date(<%=h collection.giving_year %>, <%=h collection.giving_month %>),<%=h collection.monthly_sum %>]);
+		// Offset the month by 1 to account for flot's date offset
+		contribs.push([new Date(<%=h collection.giving_year %>, <%=h collection.giving_month %>-1),<%=h collection.monthly_sum %>]);
 	<% end %>
  
     var plot = $j.plot($j("#placeholder"),[{data:contribs,color:"rgb(77,156,192)"}], {
@@ -40,7 +41,8 @@ $j(function () {
                 previousPoint = item.datapoint;
                 $j("#tooltip").remove();
                 var x = new Date(item.datapoint[0]),y = item.datapoint[1].toFixed(2);
-                showTooltip(item.pageX, item.pageY,"Giving For "+x.getMonth()+"/"+x.getFullYear()+": $"+y);
+				// Offset the month by 1 to account for flot's date offset
+                showTooltip(item.pageX, item.pageY,"Giving For "+(x.getMonth()+1)+"/"+x.getFullYear()+": $"+y);
             }
         }
         else {
