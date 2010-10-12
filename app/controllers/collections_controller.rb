@@ -4,7 +4,9 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.xml
   def index
-    @collections = Collection.descend_by_collected_on
+    @search = Collection.search(params[:search])
+    @search.order ||= :descend_by_collected_on
+    @collections = @search.paginate(:page => params[:page], :per_page => 15)
 
     respond_to do |format|
       format.html # index.html.erb
