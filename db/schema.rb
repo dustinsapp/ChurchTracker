@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100815201132) do
+ActiveRecord::Schema.define(:version => 20101017145431) do
+
+  create_table "attendance_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "service_id"
+    t.integer  "attendance_category_id"
+    t.integer  "attendance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "collections", :force => true do |t|
     t.date     "collected_on"
@@ -60,6 +74,15 @@ ActiveRecord::Schema.define(:version => 20100815201132) do
     t.string   "email"
     t.string   "phone"
     t.integer  "household_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", :force => true do |t|
+    t.datetime "date"
+    t.text     "comments"
+    t.integer  "total_attendance"
+    t.integer  "contribution_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

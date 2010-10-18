@@ -1,0 +1,29 @@
+<p>
+  <b>Date:</b>
+  <%=h @service.date %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @service.comments %>
+</p>
+
+<% @service.attendances.each do |attendance| %>
+	<p>
+		<%=h attendance.attendance_category.name %>: 
+		<%=h attendance.attendance %>
+	</p>
+<% end %>
+<p>
+  <b>Total attendance:</b>
+  <%=h @service.total_attendance %>
+</p>
+
+<p>
+  <b>Contribution:</b>
+  <%=h @service.contribution %>
+</p>
+
+
+<%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Back', services_path %>

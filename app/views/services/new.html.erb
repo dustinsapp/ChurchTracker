@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$j(document).ready(function () {
+	$j('.attendance_category').change(function() {
+		var attendance = 0;
+		$j(".attendance_category").each(function() {
+			attendance += Number($j(this).val());
+		});
+		$j("#service_total_attendance").val(attendance);
+	});
+});
+</script>
+<h1>New service</h1>
+
+<% form_for(@service) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_field :comments %>
+  </p>
+	<% AttendanceCategory.all.each do |category| %>
+		<p>
+			<%= f.label category.name %>
+			<%= text_field_tag "attendance[#{category.id}]", 0, :class=>"attendance_category" %>
+		</p>
+	<% end %>
+  <p>
+    <%= f.label :total_attendance %><br />
+    <%= f.text_field :total_attendance, :readonly=>true %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', services_path %>

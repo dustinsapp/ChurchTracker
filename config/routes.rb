@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :services
+
+  map.resources :attendance_categories
+
   map.resources :collections, :has_many => :contributions
 
   map.resources :users

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2010-10-17 10:45:04
+  comments: MyText
+  total_attendance: 1
+  contribution: 
+
+two:
+  date: 2010-10-17 10:45:04
+  comments: MyText
+  total_attendance: 1
+  contribution: 

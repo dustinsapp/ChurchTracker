@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  service: 
+  attendance_category: 
+  attendance: 1
+
+two:
+  service: 
+  attendance_category: 
+  attendance: 1
